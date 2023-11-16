@@ -1,41 +1,57 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class transaction extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Transaction extends Model {
     static associate(models) {
-      // define association here
-      transaction.belongsTo(models.inventory, {
+      Transaction.belongsTo(models.Inventory, {
         foreignKey: 'id_inventory'
       });
-      transaction.belongsTo(models.admin, {
+      Transaction.belongsTo(models.Admin, {
         foreignKey: 'id_admin'
       });
-      transaction.belongsTo(models.supplier, {
+     Transaction.belongsTo(models.Supplier, {
         foreignKey: 'id_supplier'
       });
-      transaction.belongsTo(models.customer, {
+      Transaction.belongsTo(models.Customer, {
         foreignKey: 'id_customer'
       });
     }
   }
-  transaction.init({
-    id_inventory: DataTypes.INTEGER,
-    id_admin: DataTypes.INTEGER,
-    id_supplier: DataTypes.INTEGER,
-    id_customer: DataTypes.INTEGER,
+  Transaction.init({
+    id_inventory: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Inventory",
+        key: "id",
+      },
+    },
+    id_admin: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Admin",
+        key: "id",
+      },
+    },
+    id_supplier: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Supplier",
+        key: "id",
+      },
+    },
+    id_customer: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Customer",
+        key: "id",
+      },
+    },
     qty: DataTypes.INTEGER,
     date: DataTypes.DATE,
     in_out: DataTypes.SMALLINT
   }, {
     sequelize,
-    modelName: 'transaction',
+    modelName: 'Transaction',
   });
-  return transaction;
+  return Transaction;
 };

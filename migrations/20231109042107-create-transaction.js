@@ -2,8 +2,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('transactions', {
-      id_transaction: {
+    await queryInterface.createTable('Transactions', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -11,51 +11,18 @@ module.exports = {
       },
       id_inventory: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        references: {
-          model: "inventories",
-          key: "id_inventory"
-        },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE"
       },
       id_admin: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        references: {
-          model: "admins",
-          key: "id_admin"
-        },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE"
       },
       id_supplier: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        references: {
-          model: "suppliers",
-          key: "id_supplier"
-        },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE"
       },
       id_customer: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        references: {
-          model: "customers",
-          key: "id_customer"
-        },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE"
       },
       qty: {
         type: Sequelize.INTEGER,
-        allowNull: false
       },
       date: {
         type: Sequelize.DATE
@@ -74,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('transactions');
+    await queryInterface.dropTable('Transactions');
   }
 };

@@ -1,25 +1,47 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    const addInventory= [
-      {
-        product_name: "Scarlet",
-        stock:100,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        product_name: "Implora",
-        stock:250,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-    ]
-    return queryInterface.bulkInsert('inventories', addInventory, {})
+  async up(queryInterface, Sequelize) {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+     */
+    await queryInterface.bulkInsert(
+      "Inventories",
+      [
+        {
+          id_category: 1,
+          inventory_name: "Product 1",
+          stock: 10,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id_category: 2,
+          inventory_name: "Product 2",
+          stock: 15,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        // Tambahkan data lainnya sesuai kebutuhan
+      ],
+      {}
+    );
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('invetories', null, {});
-  }
+
+  async down(queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+    await queryInterface.bulkDelete("Inventories", null, {});
+  },
 };

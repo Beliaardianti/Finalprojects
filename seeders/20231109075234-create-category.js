@@ -1,25 +1,44 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    const addCategory = [
-      {
-        category_product: "Body Lation",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        delete_at: new Date()
-      },
-      {
-        category_product: "Sunscreen",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        delete_at: new Date()
-      }
-    ]
-    return queryInterface.bulkInsert('categories', addCategory, {})
+  async up(queryInterface, Sequelize) {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+     */
+    await queryInterface.bulkInsert(
+      "Categories",
+      [
+        {
+          category_product: "Body Lation",
+          deleted_at: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          category_product: "Sunscreen",
+          deleted_at: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {}
+    );
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('categories', null, {});
-  }
+
+  async down(queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+    await queryInterface.bulkDelete("Categories", null, {});
+  },
 };

@@ -12,7 +12,7 @@ module.exports = {
       id_category: {
         type: Sequelize.INTEGER,
       },
-      product_name: {
+      nama_product: {
         type: Sequelize.STRING,
       },
       stock: {

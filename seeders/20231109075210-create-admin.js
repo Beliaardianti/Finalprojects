@@ -17,7 +17,7 @@ module.exports = {
       [
         {
           name: "Deni Caknan",
-          username: "P4ris222",
+          email: "P4ris2@gmail.com",
           password: "45678900",
           no_handphone: "083456789341",
           createdAt: new Date(),
@@ -25,7 +25,7 @@ module.exports = {
         },
         {
           name: "Naura Sati",
-          username: "L0nd0n34",
+          email: "L0nd0n@gmail.com",
           password: "45679283",
           no_handphone: "089876789212",
           createdAt: new Date(),

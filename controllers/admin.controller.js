@@ -71,6 +71,18 @@ exports.loginAdmin = async (req, res, next) => {
   }
 };
 
+//logout
+exports.logoutAdmin = async (req, res, next) => {
+  try {
+   
+    const adminId = req.userId; // ID admin dari token
+    res.json({ message: "Logout successful" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 // Mendapatkan detail admin berdasarkan ID
 exports.getAdminById = async (req, res, next) => {
   try {
